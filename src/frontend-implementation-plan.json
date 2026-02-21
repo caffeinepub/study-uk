@@ -1,0 +1,176 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Remove all UI backgrounds for full wallpaper visibility and enhance wallpaper upload with file picker",
+  "requirements": [
+    {
+      "id": "REQ-24",
+      "summary": "Remove all background colors, backdrop effects, and opacity overlays from every UI component so the wallpaper is fully visible behind all elements",
+      "acceptanceCriteria": [
+        "All UI components have transparent backgrounds with no colored overlays or backdrop filters",
+        "Text and controls float directly over the wallpaper without any background boxes",
+        "The wallpaper is fully visible behind all elements on both the timer page and dashboard page",
+        "UI elements remain readable and usable with text colors that contrast well against various wallpaper backgrounds"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/timers/TimerSection.tsx",
+          "operation": "modify",
+          "description": "Remove background colors and backdrop filters from the timer section container and all nested card components. Ensure timer tabs, buttons, and timer displays have transparent backgrounds while maintaining text visibility with appropriate text shadows or contrasting colors."
+        },
+        {
+          "path": "frontend/src/components/timers/StopwatchTimer.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the stopwatch timer display and controls. Make all container elements transparent while ensuring the timer numbers and buttons remain visible with text shadows or contrasting text colors."
+        },
+        {
+          "path": "frontend/src/components/timers/PomodoroTimer.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the Pomodoro timer display, phase indicators, and control buttons. Ensure transparent backgrounds throughout while maintaining readability with text contrast enhancements."
+        },
+        {
+          "path": "frontend/src/components/timers/AnimedoroTimer.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the Animedoro timer display and all phase controls. Make container elements transparent while preserving text visibility with appropriate contrast techniques."
+        },
+        {
+          "path": "frontend/src/components/timers/CustomPresetTimer.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from custom preset timer displays. Ensure transparent backgrounds for all timer elements while maintaining text readability."
+        },
+        {
+          "path": "frontend/src/components/quotes/MotivationalQuote.tsx",
+          "operation": "modify",
+          "description": "Remove background colors and backdrop effects from the motivational quote card. Make the card container transparent while ensuring quote text and author attribution remain readable with text shadows or contrasting colors."
+        },
+        {
+          "path": "frontend/src/components/sound/AmbientSoundPlayer.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the ambient sound player container, sound option buttons, and controls. Ensure all elements have transparent backgrounds while maintaining button visibility and readability with text contrast enhancements."
+        },
+        {
+          "path": "frontend/src/components/spotify/SpotifyPlayer.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the Spotify player container, track display, and playback controls. Make all elements transparent while ensuring text and buttons remain visible with appropriate contrast."
+        },
+        {
+          "path": "frontend/src/components/stats/StudyStats.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from statistics panels, filter controls, bar chart containers, and export buttons. Ensure transparent backgrounds throughout while maintaining chart and text readability with contrasting colors."
+        },
+        {
+          "path": "frontend/src/components/goals/GoalTracker.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from goal tracker cards, progress bars, and achievement displays. Make all container elements transparent while ensuring goal names, progress percentages, and streak counts remain readable."
+        },
+        {
+          "path": "frontend/src/components/goals/GoalManager.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the goal creation dialog form and input fields. Ensure transparent backgrounds while maintaining form field visibility and usability with border contrast."
+        },
+        {
+          "path": "frontend/src/components/presets/PresetManager.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the preset creation dialog form and all input fields. Make dialog containers transparent while ensuring form elements remain usable with contrasting borders and text."
+        },
+        {
+          "path": "frontend/src/components/wallpaper/WallpaperSelector.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the wallpaper selector dialog, category sections, and thumbnail containers. Ensure transparent backgrounds while maintaining wallpaper preview visibility and selection indicators."
+        },
+        {
+          "path": "frontend/src/components/wallpaper/WallpaperUploader.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the custom wallpaper upload section and progress indicators. Make all container elements transparent while ensuring upload controls and progress displays remain visible."
+        },
+        {
+          "path": "frontend/src/components/layout/Navigation.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from navigation buttons and containers. Ensure transparent backgrounds while maintaining button visibility with text contrast and subtle borders or outlines for active state indication."
+        },
+        {
+          "path": "frontend/src/components/layout/MainLayout.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the main layout wrapper, settings sheet, and footer. Ensure all layout containers have transparent backgrounds while maintaining content readability."
+        },
+        {
+          "path": "frontend/src/components/focus/FocusMode.tsx",
+          "operation": "modify",
+          "description": "Remove background colors and backdrop effects from the focus mode overlay. Make the overlay transparent while ensuring the large timer display and controls remain visible with strong text contrast."
+        },
+        {
+          "path": "frontend/src/components/help/KeyboardShortcutsHelp.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the keyboard shortcuts dialog. Ensure transparent background while maintaining shortcut text readability with appropriate contrast."
+        },
+        {
+          "path": "frontend/src/components/tags/TagInput.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from tag input containers and tag badges. Make all elements transparent while ensuring tag text and borders remain visible with contrasting colors."
+        },
+        {
+          "path": "frontend/src/pages/TimerPage.tsx",
+          "operation": "modify",
+          "description": "Remove any background colors from the timer page layout containers and grid sections. Ensure the page container is transparent to allow full wallpaper visibility."
+        },
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Remove background colors from the dashboard page containers, header gradient, and section wrappers. Make all page elements transparent while maintaining component readability."
+        },
+        {
+          "path": "frontend/src/components/wallpaper/WallpaperBackground.tsx",
+          "operation": "modify",
+          "description": "Remove or significantly reduce the gradient overlay opacity to maximize wallpaper visibility. Ensure the wallpaper image is displayed with minimal to no overlay darkening or color tinting."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global CSS variables and base styles to remove default background colors from common UI elements. Add utility classes for text shadows or contrasting text colors to ensure readability over various wallpaper backgrounds."
+        }
+      ]
+    },
+    {
+      "id": "REQ-25",
+      "summary": "Add a file upload button to the wallpaper section that allows users to select and upload image files directly from their local device",
+      "acceptanceCriteria": [
+        "A file input button is added to the wallpaper section alongside the existing URL input field",
+        "Users can click the button to open their device's file picker and select image files",
+        "Selected image files are uploaded and stored as custom wallpapers",
+        "The uploaded wallpapers appear in the custom wallpaper grid and can be selected immediately",
+        "The file upload option works independently from the URL input method"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/wallpaper/WallpaperUploader.tsx",
+          "operation": "modify",
+          "description": "Add a file input button alongside the existing URL input field that opens the device's native file picker. Use the blob-storage component to handle file selection and upload: convert the selected File to Uint8Array, create an ExternalBlob using ExternalBlob.fromBytes(), and call the uploadWallpaper backend method with the blob. Add upload progress tracking using withUploadProgress(). Verify the blob-storage component's usage instructions before implementing. Ensure the file picker accepts common image formats (jpg, png, gif, webp) and that uploaded files appear in the custom wallpaper grid immediately after successful upload."
+        }
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "summary": "Implement functional ambient sound player with audio playback for six sounds including play/pause controls and volume slider",
+      "acceptanceCriteria": [
+        "Audio files or audio sources are integrated for all six ambient sounds: rain, coffee shop, forest, waves, white noise, and lofi beats",
+        "Users can select and play any ambient sound from the player interface",
+        "The play/pause button correctly starts and stops the selected sound",
+        "The volume slider adjusts the audio playback volume in real-time",
+        "Only one ambient sound plays at a time",
+        "Audio playback works across all browsers and the selected sound/volume persists across page reloads"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useAmbientSound.ts",
+          "operation": "modify",
+          "description": "Implement actual audio playback using the Web Audio API or HTML5 Audio elements. Create Audio instances for each of the six ambient sounds (rain, coffee shop, forest, waves, white noise, lofi beats) using royalty-free audio file URLs or embedded audio sources. Wire the play/pause state to start and stop audio playback. Connect the volume state to control the Audio element's volume property in real-time. Ensure only one sound plays at a time by stopping other sounds when a new one starts. Add audio loading error handling and ensure audio sources are compatible across browsers."
+        },
+        {
+          "path": "frontend/src/components/sound/AmbientSoundPlayer.tsx",
+          "operation": "modify",
+          "description": "Verify that the component correctly uses the updated useAmbientSound hook with actual audio playback. Ensure the play/pause button triggers audio start/stop, the volume slider adjusts playback volume, and sound selection properly switches between audio sources. Test that the UI reflects the current playing state and volume accurately."
+        }
+      ]
+    }
+  ]
+}

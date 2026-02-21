@@ -1,0 +1,88 @@
+{
+  "kind": "build_request",
+  "title": "Remove all UI backgrounds for full wallpaper visibility and enhance wallpaper upload with file picker",
+  "projectName": "Study Sanctuary",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-24",
+      "text": "Remove all background colors, backdrop effects, and opacity overlays from every UI component across the entire application so that the wallpaper is fully visible behind all elements, including the timer display, buttons, controls, cards, sections, dashboard components, study goals, statistics panels, quotes, navigation, settings, and any other UI elements",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "just test floating over the wallpaper yes everyone even in the dashboards study goals every i just want to see more of the wallpaper behinf evethinh",
+          "Full UI Transparency: Remove all background colors from every UI element (timer display, buttons, controls, dashboard sections, study goals, etc.) so the wallpaper is fully visible behind everything"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All UI components have transparent backgrounds with no colored overlays or backdrop filters",
+        "Text and controls float directly over the wallpaper without any background boxes",
+        "The wallpaper is fully visible behind all elements on both the timer page and dashboard page",
+        "UI elements remain readable and usable with text colors that contrast well against various wallpaper backgrounds"
+      ]
+    },
+    {
+      "id": "REQ-25",
+      "text": "Add a file upload button to the wallpaper section that allows users to select and upload image files directly from their local device, providing an alternative to the existing URL link input method for adding custom wallpapers",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "plus for the wallpaper section add a option for image and add files not just link make it easier for ppl to use please",
+          "Wallpaper File Upload: Add a file upload option in the wallpaper section alongside the existing URL link option"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A file input button is added to the wallpaper section alongside the existing URL input field",
+        "Users can click the button to open their device's file picker and select image files",
+        "Selected image files are uploaded and stored as custom wallpapers",
+        "The uploaded wallpapers appear in the custom wallpaper grid and can be selected immediately",
+        "The file upload option works independently from the URL input method"
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "text": "Implement a functional ambient sound player with audio playback for rain, coffee shop, forest, waves, white noise, and lofi beats sounds, including play/pause controls and a volume slider that adjusts the audio output level",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "and why cant i hear ambient sound??",
+          "Ambient Sound Player: Implement the ambient sound feature with a curated library of focus sounds (rain, coffee shop, forest, waves, white noise, lofi beats) that you can play during study sessions with volume control"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Audio files or audio sources are integrated for all six ambient sounds: rain, coffee shop, forest, waves, white noise, and lofi beats",
+        "Users can select and play any ambient sound from the player interface",
+        "The play/pause button correctly starts and stops the selected sound",
+        "The volume slider adjusts the audio playback volume in real-time",
+        "Only one ambient sound plays at a time",
+        "Audio playback works across all browsers and the selected sound/volume persists across page reloads"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify backend/main.mo or backend/migration.mo for these changes",
+    "Preserve the existing two-page layout structure (timer page and dashboard page)",
+    "Keep all existing functionality for custom wallpaper uploads via URL intact",
+    "Maintain the existing ambient sound player UI component structure in AmbientSoundPlayer.tsx"
+  ],
+  "nonGoals": [
+    "Changing the technology stack or component library",
+    "Modifying the timer functionality or study tracking logic",
+    "Redesigning the overall page layout or navigation structure",
+    "Adding new ambient sounds beyond the existing six options",
+    "Implementing audio mixing or playing multiple sounds simultaneously"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

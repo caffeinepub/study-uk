@@ -1,0 +1,294 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 11,
+  "summary": "A study website with aesthetic themes (anime, Studio Ghibli), featuring timers (stopwatch, Pomodoro, Animedoro), customizable wallpapers, Spotify integration, and study hour tracking (daily, weekly, monthly, yearly)",
+  "architectural_notes": [
+    "Website should be free and accessible to everyone",
+    "Focus on aesthetic UI with study vibes (anime, Studio Ghibli)",
+    "Multiple timer modes: stopwatch, Pomodoro, Animedoro",
+    "Include advanced/premium features typically behind paywalls in other study apps, but keep them completely free",
+    "Default wallpapers need to be clear and high-quality with good vision/visibility",
+    "All UI elements should have completely transparent backgrounds with text floating directly over wallpapers",
+    "Wallpaper section should support both URL link input and direct file upload from device"
+  ],
+  "known_issues": [
+    "Current wallpapers lack clarity and good vision"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-implement-a-stopwatch-timer-that-allows-users-to-start-pause-and-reset-time-tracking-for-study-sessions",
+      "title": "Implement a stopwatch timer that allows users to start, pause, and reset time tracking for study sessions",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-pomodoro-timer-with-customizable-work-25-minutes-default-and-break-intervals-5-minutes-short-break-15-minutes-long-break",
+      "title": "Implement a Pomodoro timer with customizable work (25 minutes default) and break intervals (5 minutes short break, 15 minutes long break)",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-animedoro-timer-that-alternates-between-40-60-minute-study-sessions-and-anime-episode-break-intervals",
+      "title": "Implement an Animedoro timer that alternates between 40-60 minute study sessions and anime episode break intervals",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-dynamic-wallpaper-system-with-aesthetic-themes-including-anime-studio-ghibli-and-general-study-vibes-categories-that-users-can-select-and-switch-between",
+      "title": "Create a dynamic wallpaper system with aesthetic themes including anime, Studio Ghibli, and general study vibes categories that users can select and switch between",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-spotify-playback-controls-that-allow-users-to-play-pause-skip-tracks-and-view-currently-playing-music-within-the-study-interface",
+      "title": "Integrate Spotify playback controls that allow users to play, pause, skip tracks, and view currently playing music within the study interface",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-a-study-hours-tracking-system-that-records-all-timer-sessions-and-displays-cumulative-statistics-in-daily-weekly-monthly-and-yearly-views",
+      "title": "Build a study hours tracking system that records all timer sessions and displays cumulative statistics in daily, weekly, monthly, and yearly views",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-application-is-publicly-accessible-without-requiring-payment-or-subscription",
+      "title": "Ensure the application is publicly accessible without requiring payment or subscription",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-cohesive-visual-theme-that-blends-aesthetic-study-atmospheres-with-anime-and-studio-ghibli-inspired-elements-featuring-soft-pastels-natural-earth-tones-and-dreamy-illustrated-aesthetics-with-smooth-animations-and-calming-typography",
+      "title": "Design a cohesive visual theme that blends aesthetic study atmospheres with anime and Studio Ghibli-inspired elements, featuring soft pastels, natural earth tones, and dreamy illustrated aesthetics with smooth animations and calming typography",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-curated-collection-of-motivational-quotes-from-famous-intellectuals-scientists-philosophers-authors-scholars-focused-on-learning-perseverance-and-intellectual-growth",
+      "title": "Create a curated collection of motivational quotes from famous intellectuals (scientists, philosophers, authors, scholars) focused on learning, perseverance, and intellectual growth",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-a-random-motivational-quote-prominently-in-the-study-interface-that-rotates-or-can-be-refreshed-by-the-user",
+      "title": "Display a random motivational quote prominently in the study interface that rotates or can be refreshed by the user",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-focus-mode-that-blocks-distractions-by-dimming-the-ui-and-displaying-only-the-active-timer-with-minimal-controls-allowing-users-to-toggle-in-and-out-of-this-mode",
+      "title": "Implement a focus mode that blocks distractions by dimming the UI and displaying only the active timer with minimal controls, allowing users to toggle in and out of this mode",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-detailed-analytics-dashboard-that-shows-study-patterns-including-most-productive-hours-of-the-day-streak-tracking-consecutive-study-days-total-sessions-count-average-session-duration-and-monthly-yearly-comparison-charts",
+      "title": "Add detailed analytics dashboard that shows study patterns including most productive hours of the day, streak tracking (consecutive study days), total sessions count, average session duration, and monthly/yearly comparison charts",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-custom-timer-presets-that-allow-users-to-create-save-and-manage-their-own-timer-configurations-with-custom-durations-labels-and-color-themes-beyond-the-default-stopwatch-pomodoro-and-animedoro-modes",
+      "title": "Implement custom timer presets that allow users to create, save, and manage their own timer configurations with custom durations, labels, and color themes beyond the default stopwatch, Pomodoro, and Animedoro modes",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-goal-setting-and-tracking-functionality-that-allows-users-to-set-daily-weekly-or-monthly-study-hour-goals-displays-progress-toward-those-goals-with-visual-indicators-and-sends-congratulatory-messages-when-goals-are-achieved",
+      "title": "Add goal setting and tracking functionality that allows users to set daily, weekly, or monthly study hour goals, displays progress toward those goals with visual indicators, and sends congratulatory messages when goals are achieved",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-task-project-tagging-system-that-allows-users-to-associate-timer-sessions-with-specific-subjects-projects-or-tasks-and-filter-study-statistics-by-these-tags",
+      "title": "Implement task/project tagging system that allows users to associate timer sessions with specific subjects, projects, or tasks, and filter study statistics by these tags",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-export-functionality-that-allows-users-to-download-their-complete-study-session-history-and-statistics-as-csv-or-json-files-for-external-analysis-or-record-keeping",
+      "title": "Add export functionality that allows users to download their complete study session history and statistics as CSV or JSON files for external analysis or record-keeping",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-ambient-sound-integration-with-a-curated-library-of-focus-sounds-rain-coffee-shop-forest-waves-white-noise-lofi-beats-that-users-can-play-in-the-background-during-study-sessions-with-volume-control",
+      "title": "Implement ambient sound integration with a curated library of focus sounds (rain, coffee shop, forest, waves, white noise, lofi beats) that users can play in the background during study sessions with volume control",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-keyboard-shortcuts-for-all-major-actions-including-starting-pausing-timers-resetting-timers-refreshing-quotes-changing-wallpapers-toggling-focus-mode-and-navigating-between-timer-modes",
+      "title": "Add keyboard shortcuts for all major actions including starting/pausing timers, resetting timers, refreshing quotes, changing wallpapers, toggling focus mode, and navigating between timer modes",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-transparent-luminescent-ui-overlay-with-a-solid-opaque-design-to-ensure-the-wallpaper-is-clearly-visible-without-visual-interference-from-translucent-elements",
+      "title": "Replace the current transparent/luminescent UI overlay with a solid, opaque design to ensure the wallpaper is clearly visible without visual interference from translucent elements",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-functionality-for-users-to-upload-their-own-custom-wallpapers-from-their-local-device-which-should-be-stored-and-selectable-alongside-the-existing-wallpaper-collection",
+      "title": "Add functionality for users to upload their own custom wallpapers from their local device, which should be stored and selectable alongside the existing wallpaper collection",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-the-application-layout-into-two-separate-pages-one-dedicated-to-the-timer-interface-and-another-for-statistics-settings-and-other-features",
+      "title": "Redesign the application layout into two separate pages: one dedicated to the timer interface and another for statistics, settings, and other features",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-increase-the-size-of-the-timer-display-to-occupy-significantly-more-screen-space-making-it-the-dominant-visual-element-on-the-timer-page",
+      "title": "Increase the size of the timer display to occupy significantly more screen space, making it the dominant visual element on the timer page",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-wallpaper-collection-with-new-clearer-images-that-provide-better-visual-quality-and-clarity",
+      "title": "Replace the existing wallpaper collection with new, clearer images that provide better visual quality and clarity",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-all-background-colors-backdrop-effects-and-opacity-overlays-from-every-ui-component-across-the-entire-application-so-that-the-wallpaper-is-fully-visible-behind-all-elements-including-the-timer-display-buttons-controls-cards-sections-dashboard-components-study-goals-statistics-panels-quotes-navigation-settings-and-any-other-ui-elements",
+      "title": "Remove all background colors, backdrop effects, and opacity overlays from every UI component across the entire application so that the wallpaper is fully visible behind all elements, including the timer display, buttons, controls, cards, sections, dashboard components, study goals, statistics panels, quotes, navigation, settings, and any other UI elements",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-file-upload-button-to-the-wallpaper-section-that-allows-users-to-select-and-upload-image-files-directly-from-their-local-device-providing-an-alternative-to-the-existing-url-link-input-method-for-adding-custom-wallpapers",
+      "title": "Add a file upload button to the wallpaper section that allows users to select and upload image files directly from their local device, providing an alternative to the existing URL link input method for adding custom wallpapers",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-functional-ambient-sound-player-with-audio-playback-for-rain-coffee-shop-forest-waves-white-noise-and-lofi-beats-sounds-including-play-pause-controls-and-a-volume-slider-that-adjusts-the-audio-output-level",
+      "title": "Implement a functional ambient sound player with audio playback for rain, coffee shop, forest, waves, white noise, and lofi beats sounds, including play/pause controls and a volume slider that adjusts the audio output level",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Stopwatch timer functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Pomodoro timer",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Animedoro timer",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Aesthetic wallpaper system with anime and Studio Ghibli themes",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Spotify integration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Study hours tracking with daily, weekly, monthly, and yearly views",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Display motivational quotes from famous intellectuals to encourage studying",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add advanced premium features found in paid study websites (e.g., detailed analytics, advanced customization, focus modes, collaborative features) but keep them free for all users",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Redesign layout into two separate pages/views",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Increase timer display size to occupy more screen space",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Study UK",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

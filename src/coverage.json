@@ -1,0 +1,126 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-21T03:36:24.441Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 3,
+    "implemented": 3,
+    "items": [
+      {
+        "id": "REQ-24",
+        "summary": "Remove all background colors, backdrop effects, and opacity overlays from every UI component across the entire application so that the wallpaper is fully visible behind all elements, including the timer display, buttons, controls, cards, sections, dashboard components, study goals, statistics panels, quotes, navigation, settings, and any other UI elements",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/timers/TimerSection.tsx",
+          "frontend/src/components/timers/StopwatchTimer.tsx",
+          "frontend/src/components/timers/PomodoroTimer.tsx",
+          "frontend/src/components/timers/AnimedoroTimer.tsx",
+          "frontend/src/components/timers/CustomPresetTimer.tsx",
+          "frontend/src/components/quotes/MotivationalQuote.tsx",
+          "frontend/src/components/sound/AmbientSoundPlayer.tsx",
+          "frontend/src/components/spotify/SpotifyPlayer.tsx",
+          "frontend/src/components/stats/StudyStats.tsx",
+          "frontend/src/components/goals/GoalTracker.tsx",
+          "frontend/src/components/goals/GoalManager.tsx",
+          "frontend/src/components/presets/PresetManager.tsx",
+          "frontend/src/components/wallpaper/WallpaperSelector.tsx",
+          "frontend/src/components/wallpaper/WallpaperUploader.tsx",
+          "frontend/src/components/layout/Navigation.tsx",
+          "frontend/src/components/layout/MainLayout.tsx",
+          "frontend/src/components/focus/FocusMode.tsx",
+          "frontend/src/components/help/KeyboardShortcutsHelp.tsx",
+          "frontend/src/components/tags/TagInput.tsx",
+          "frontend/src/pages/TimerPage.tsx",
+          "frontend/src/pages/DashboardPage.tsx",
+          "frontend/src/components/wallpaper/WallpaperBackground.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/timers/TimerSection.tsx",
+          "frontend/src/components/timers/StopwatchTimer.tsx",
+          "frontend/src/components/timers/PomodoroTimer.tsx",
+          "frontend/src/components/timers/AnimedoroTimer.tsx",
+          "frontend/src/components/timers/CustomPresetTimer.tsx",
+          "frontend/src/components/quotes/MotivationalQuote.tsx",
+          "frontend/src/components/sound/AmbientSoundPlayer.tsx",
+          "frontend/src/components/spotify/SpotifyPlayer.tsx",
+          "frontend/src/components/stats/StudyStats.tsx",
+          "frontend/src/components/goals/GoalTracker.tsx",
+          "frontend/src/components/goals/GoalManager.tsx",
+          "frontend/src/components/presets/PresetManager.tsx",
+          "frontend/src/components/wallpaper/WallpaperSelector.tsx",
+          "frontend/src/components/wallpaper/WallpaperUploader.tsx",
+          "frontend/src/components/layout/Navigation.tsx",
+          "frontend/src/components/layout/MainLayout.tsx",
+          "frontend/src/components/focus/FocusMode.tsx",
+          "frontend/src/components/help/KeyboardShortcutsHelp.tsx",
+          "frontend/src/components/tags/TagInput.tsx",
+          "frontend/src/pages/DashboardPage.tsx",
+          "frontend/src/components/wallpaper/WallpaperBackground.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-25",
+        "summary": "Add a file upload button to the wallpaper section that allows users to select and upload image files directly from their local device, providing an alternative to the existing URL link input method for adding custom wallpapers",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/wallpaper/WallpaperUploader.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/wallpaper/WallpaperUploader.tsx"
+        ]
+      },
+      {
+        "id": "REQ-26",
+        "summary": "Implement a functional ambient sound player with audio playback for rain, coffee shop, forest, waves, white noise, and lofi beats sounds, including play/pause controls and a volume slider that adjusts the audio output level",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useAmbientSound.ts",
+          "frontend/src/components/sound/AmbientSoundPlayer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useAmbientSound.ts",
+          "frontend/src/components/sound/AmbientSoundPlayer.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/focus/FocusMode.tsx",
+    "frontend/src/components/goals/GoalManager.tsx",
+    "frontend/src/components/goals/GoalTracker.tsx",
+    "frontend/src/components/help/KeyboardShortcutsHelp.tsx",
+    "frontend/src/components/layout/MainLayout.tsx",
+    "frontend/src/components/layout/Navigation.tsx",
+    "frontend/src/components/presets/PresetManager.tsx",
+    "frontend/src/components/quotes/MotivationalQuote.tsx",
+    "frontend/src/components/sound/AmbientSoundPlayer.tsx",
+    "frontend/src/components/spotify/SpotifyPlayer.tsx",
+    "frontend/src/components/stats/StudyStats.tsx",
+    "frontend/src/components/tags/TagInput.tsx",
+    "frontend/src/components/timers/AnimedoroTimer.tsx",
+    "frontend/src/components/timers/CustomPresetTimer.tsx",
+    "frontend/src/components/timers/PomodoroTimer.tsx",
+    "frontend/src/components/timers/StopwatchTimer.tsx",
+    "frontend/src/components/timers/TimerSection.tsx",
+    "frontend/src/components/wallpaper/WallpaperBackground.tsx",
+    "frontend/src/components/wallpaper/WallpaperSelector.tsx",
+    "frontend/src/components/wallpaper/WallpaperUploader.tsx",
+    "frontend/src/hooks/useAmbientSound.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/DashboardPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
