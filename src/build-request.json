@@ -1,78 +1,76 @@
 {
   "kind": "build_request",
-  "title": "Fix ambient sound playback and adjust timer/quote layout spacing",
+  "title": "Fix ambient sound player audio source errors in Chrome",
   "priority": "high",
   "requirements": [
     {
-      "id": "REQ-39",
-      "text": "Debug and fix the ambient sound player in frontend/src/hooks/useAmbientSound.ts so that all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) successfully play audio when the play button is clicked, ensuring proper Audio element initialization, source loading, and playback execution",
+      "id": "REQ-44",
+      "text": "Replace the current audio source URLs in frontend/src/hooks/useAmbientSound.ts with reliable, publicly accessible audio file sources that work in Chrome browser, ensuring all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) have valid audio sources with supported formats (MP3 or OGG)",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-10"
         ],
         "quotes": [
-          "no even one sound is playable wht is wrong with ur coding"
+          "all sound bruh why would only one",
+          "no supported source"
         ]
       },
       "acceptanceCriteria": [
-        "Clicking play on any ambient sound (rain, coffee shop, forest, waves, white noise, lofi beats) successfully plays the corresponding audio",
-        "Audio playback continues until paused by the user",
-        "Volume slider correctly adjusts the audio output level",
-        "No console errors related to audio playback"
+        "All six ambient sounds (rain, coffee shop, forest, waves, white noise, lofi beats) load successfully without 'no supported source' errors",
+        "Audio files are in MP3 or OGG format supported by Chrome browser",
+        "Audio sources are publicly accessible URLs that do not require authentication or have CORS restrictions",
+        "When clicking play on any ambient sound, audio begins playback without errors"
       ]
     },
     {
-      "id": "REQ-40",
-      "text": "Adjust the vertical positioning in frontend/src/pages/TimerPage.tsx so the timer is moved down slightly from its current position while remaining horizontally centered",
+      "id": "REQ-45",
+      "text": "Add comprehensive error handling and logging in frontend/src/hooks/useAmbientSound.ts to catch and display specific error messages when audio fails to load or play, including checking for Audio element support, source loading errors, and playback failures",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-10",
-          "msg-12"
+          "msg-10"
         ],
         "quotes": [
-          "timer move a bit down",
-          "Move the timer down slightly"
+          "unknown error"
         ]
       },
       "acceptanceCriteria": [
-        "Timer display is positioned lower on the screen than its current location",
-        "Timer remains horizontally centered",
-        "Vertical spacing creates clear separation from the quote above"
+        "Console logs specific error messages when audio source fails to load",
+        "Console logs specific error messages when audio playback fails",
+        "Error states are captured and exposed to the UI component for user feedback",
+        "Different error types (source loading vs playback) are distinguished in logging"
       ]
     },
     {
-      "id": "REQ-41",
-      "text": "Ensure the motivational quote and timer display in frontend/src/pages/TimerPage.tsx have sufficient vertical spacing between them so they are clearly separated and do not overlap or appear too close together",
+      "id": "REQ-46",
+      "text": "Ensure the Audio element in frontend/src/hooks/useAmbientSound.ts is properly initialized before attempting to play, with proper preload settings and error event listeners attached before setting the source",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-13"
-        ],
-        "quotes": [
-          "quote and timer shouldnt overlappp to each other it should be visible diiff ly"
+          "msg-10"
         ]
       },
       "acceptanceCriteria": [
-        "Quote and timer have clear visual separation with adequate vertical spacing",
-        "No overlapping occurs between quote text and timer display",
-        "Both elements remain fully readable and distinct from each other"
+        "Audio element is created with proper initialization sequence",
+        "Error event listeners are attached before setting audio source",
+        "Preload attribute is set appropriately for ambient sounds",
+        "Audio element state is validated before play() is called"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the backend/main.mo file",
-    "Do not change files in frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui directory",
-    "Maintain the flat white text design with no backgrounds, shadows, or opacity overlays",
-    "Keep all existing timer functionality intact while adjusting layout"
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts or frontend/src/hooks/useActor.ts",
+    "Do not change the ambient sound player UI component structure beyond what's needed for error display",
+    "Maintain the existing volume control and play/pause functionality",
+    "Keep the localStorage persistence for sound selection and volume"
   ],
   "nonGoals": [
-    "Changing the timer display font size",
-    "Changing the quote font size",
-    "Adding new ambient sounds beyond the existing collection",
-    "Modifying the wallpaper system",
-    "Changing the overall application theme or color scheme"
+    "Adding new ambient sound types beyond the existing six",
+    "Implementing custom audio upload functionality",
+    "Creating audio visualization or equalizer features",
+    "Adding audio effects or filters",
+    "Implementing playlist or queue functionality"
   ],
   "imageRequirements": {
     "required": [],

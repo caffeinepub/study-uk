@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 19,
+  "projectStateVersion": 23,
   "summary": "A study website with aesthetic themes (anime, Studio Ghibli), featuring timers (stopwatch, Pomodoro, Animedoro), customizable wallpapers, Spotify integration, and study hour tracking (daily, weekly, monthly, yearly)",
   "architectural_notes": [
     "Website should be free and accessible to everyone",
@@ -13,10 +13,7 @@
     "UI elements should be completely flat with no shadows, glows, or visual effects - just raw text and icons on wallpaper",
     "Custom ambient sounds section should have no black background and be fully transparent like other UI elements"
   ],
-  "known_issues": [
-    "White transparent overlays still present on UI elements despite request for complete removal",
-    "Ambient sound player not playing any audio when play button is clicked"
-  ],
+  "known_issues": [],
   "isFixRequest": true,
   "existing_features": [
     {
@@ -346,6 +343,46 @@
         "REQ-41"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-fix-the-ambient-sound-player-in-frontend-src-hooks-useambientsound-ts-to-handle-browser-autoplay-restrictions-by-implementing-a-user-gesture-requirement-adding-fallback-mechanisms-with-retry-logic-proper-audio-element-initialization-with-error-handling-and-comprehensive-console-logging-for-debugging-playback-failures",
+      "title": "Fix the ambient sound player in frontend/src/hooks/useAmbientSound.ts to handle browser autoplay restrictions by implementing a user gesture requirement, adding fallback mechanisms with retry logic, proper Audio element initialization with error handling, and comprehensive console logging for debugging playback failures",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-ambient-sound-player-ui-in-frontend-src-components-sound-ambientsoundplayer-tsx-to-display-helpful-feedback-messages-when-audio-fails-to-play-due-to-browser-restrictions-including-prompts-for-user-interaction-and-clear-error-states",
+      "title": "Update the ambient sound player UI in frontend/src/components/sound/AmbientSoundPlayer.tsx to display helpful feedback messages when audio fails to play due to browser restrictions, including prompts for user interaction and clear error states",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-audio-source-urls-in-frontend-src-hooks-useambientsound-ts-with-reliable-publicly-accessible-audio-file-sources-that-work-in-chrome-browser-ensuring-all-sounds-rain-coffee-shop-forest-waves-white-noise-lofi-beats-have-valid-audio-sources-with-supported-formats-mp3-or-ogg",
+      "title": "Replace the current audio source URLs in frontend/src/hooks/useAmbientSound.ts with reliable, publicly accessible audio file sources that work in Chrome browser, ensuring all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) have valid audio sources with supported formats (MP3 or OGG)",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-comprehensive-error-handling-and-logging-in-frontend-src-hooks-useambientsound-ts-to-catch-and-display-specific-error-messages-when-audio-fails-to-load-or-play-including-checking-for-audio-element-support-source-loading-errors-and-playback-failures",
+      "title": "Add comprehensive error handling and logging in frontend/src/hooks/useAmbientSound.ts to catch and display specific error messages when audio fails to load or play, including checking for Audio element support, source loading errors, and playback failures",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-audio-element-in-frontend-src-hooks-useambientsound-ts-is-properly-initialized-before-attempting-to-play-with-proper-preload-settings-and-error-event-listeners-attached-before-setting-the-source",
+      "title": "Ensure the Audio element in frontend/src/hooks/useAmbientSound.ts is properly initialized before attempting to play, with proper preload settings and error event listeners attached before setting the source",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -436,12 +473,6 @@
     {
       "id": "AR-19",
       "summary": "Revert timer display size back to original smaller dimensions",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-20",
-      "summary": "Fix ambient sound player so all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) play when clicked",
       "reqIds": [],
       "status": "pending"
     },

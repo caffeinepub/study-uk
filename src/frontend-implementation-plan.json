@@ -1,59 +1,61 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Fix ambient sound playback and adjust timer/quote layout spacing",
+  "title": "Fix ambient sound player audio source errors in Chrome",
   "requirements": [
     {
-      "id": "REQ-39",
-      "summary": "Debug and fix the ambient sound player to ensure all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) successfully play audio when the play button is clicked",
+      "id": "REQ-44",
+      "summary": "Replace current audio source URLs with reliable, publicly accessible audio files in supported formats (MP3/OGG) that work in Chrome browser for all six ambient sounds",
       "acceptanceCriteria": [
-        "Clicking play on any ambient sound (rain, coffee shop, forest, waves, white noise, lofi beats) successfully plays the corresponding audio",
-        "Audio playback continues until paused by the user",
-        "Volume slider correctly adjusts the audio output level",
-        "No console errors related to audio playback"
+        "All six ambient sounds (rain, coffee shop, forest, waves, white noise, lofi beats) load successfully without 'no supported source' errors",
+        "Audio files are in MP3 or OGG format supported by Chrome browser",
+        "Audio sources are publicly accessible URLs that do not require authentication or have CORS restrictions",
+        "When clicking play on any ambient sound, audio begins playback without errors"
       ],
       "file_operations": [
         {
           "path": "frontend/src/hooks/useAmbientSound.ts",
           "operation": "modify",
-          "description": "Fix the Audio element initialization and playback logic. Ensure proper audio source loading by verifying the audio file paths are correct and accessible. Add error handling for audio loading failures. Implement proper play() promise handling to catch and resolve playback issues. Ensure the audio element is properly created and configured before attempting playback. Add console logging for debugging audio state transitions and catch any exceptions during play/pause operations."
+          "description": "Replace all audio source URLs in the soundOptions array with reliable, publicly accessible MP3 or OGG files from trusted CDN sources (such as archive.org, freesound.org, or other public audio repositories) that support CORS and work reliably in Chrome. Update the 'rain', 'coffee-shop', 'forest', 'waves', 'white-noise', and 'lofi-beats' entries with valid working URLs. Ensure URLs point directly to audio files with proper content-type headers."
         }
       ]
     },
     {
-      "id": "REQ-40",
-      "summary": "Adjust the vertical positioning so the timer is moved down slightly from its current position while remaining horizontally centered",
+      "id": "REQ-45",
+      "summary": "Add comprehensive error handling and logging to catch and display specific error messages for audio loading and playback failures",
       "acceptanceCriteria": [
-        "Timer display is positioned lower on the screen than its current location",
-        "Timer remains horizontally centered",
-        "Vertical spacing creates clear separation from the quote above"
+        "Console logs specific error messages when audio source fails to load",
+        "Console logs specific error messages when audio playback fails",
+        "Error states are captured and exposed to the UI component for user feedback",
+        "Different error types (source loading vs playback) are distinguished in logging"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/TimerPage.tsx",
+          "path": "frontend/src/hooks/useAmbientSound.ts",
           "operation": "modify",
-          "description": "Adjust the vertical positioning of the TimerSection component by modifying its container margins or padding. Increase the top margin or add additional vertical spacing to push the timer down slightly while maintaining horizontal centering. Ensure the layout grid accommodates the new positioning without breaking the responsive design."
-        }
-      ]
-    },
-    {
-      "id": "REQ-41",
-      "summary": "Ensure the motivational quote and timer display have sufficient vertical spacing between them so they are clearly separated and do not overlap",
-      "acceptanceCriteria": [
-        "Quote and timer have clear visual separation with adequate vertical spacing",
-        "No overlapping occurs between quote text and timer display",
-        "Both elements remain fully readable and distinct from each other"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/TimerPage.tsx",
-          "operation": "modify",
-          "description": "Increase the vertical spacing between the MotivationalQuote and TimerSection components. Add margin-bottom to the quote container or margin-top to the timer section to create clear visual separation. Ensure sufficient gap so the quote and timer do not overlap or appear too close together, maintaining readability and visual hierarchy. Keep the flat white text design without backgrounds or shadows."
+          "description": "Add comprehensive error handling in the useAmbientSound hook: (1) Add an 'error' event listener to the Audio element that logs specific error details including error.code, error.message, and the failed source URL to the console. (2) Add an 'onerror' handler that captures source loading failures with detailed logging. (3) Wrap the play() call in a try-catch block to handle playback failures with specific error messages. (4) Add a state variable to track error messages and expose it to the component for UI feedback. (5) Distinguish between different HTML5 Media Error codes (MEDIA_ERR_ABORTED, MEDIA_ERR_NETWORK, MEDIA_ERR_DECODE, MEDIA_ERR_SRC_NOT_SUPPORTED) in console logging for debugging clarity."
         },
         {
-          "path": "frontend/src/components/quotes/MotivationalQuote.tsx",
+          "path": "frontend/src/components/sound/AmbientSoundPlayer.tsx",
           "operation": "modify",
-          "description": "Review and adjust the positioning of the quote component if needed to complement the spacing changes in TimerPage. Ensure the quote remains visually distinct and does not interfere with the timer display below it. Maintain the centered overlay positioning while allowing proper spacing for the timer beneath."
+          "description": "Update the AmbientSoundPlayer component to display error messages from the useAmbientSound hook when audio fails to load or play. Add conditional rendering to show error state with a user-friendly message below the affected sound button or in a toast notification. Ensure error display does not break the existing grid layout or volume controls."
+        }
+      ]
+    },
+    {
+      "id": "REQ-46",
+      "summary": "Ensure Audio element is properly initialized with correct preload settings and error listeners attached before setting source",
+      "acceptanceCriteria": [
+        "Audio element is created with proper initialization sequence",
+        "Error event listeners are attached before setting audio source",
+        "Preload attribute is set appropriately for ambient sounds",
+        "Audio element state is validated before play() is called"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useAmbientSound.ts",
+          "operation": "modify",
+          "description": "Refactor Audio element initialization in useAmbientSound to follow proper sequence: (1) Create the Audio element instance first. (2) Set preload='metadata' or preload='auto' to ensure audio is ready for playback. (3) Attach all event listeners ('error', 'canplay', 'loadeddata') before setting the src attribute. (4) Set loop=true for continuous playback. (5) Only after listeners are attached, set the src property. (6) In the play function, validate that the Audio element is in a ready state (readyState >= HAVE_FUTURE_DATA) before calling play(), and handle NotAllowedError for browsers requiring user interaction. (7) Ensure the Audio element reference is properly cleaned up in useEffect cleanup to prevent memory leaks."
         }
       ]
     }
