@@ -1,5 +1,4 @@
 import { useGetAllSessions, useGetSessionsByTag } from '../../hooks/useQueries';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Clock, TrendingUp, Calendar, Award, Download, Filter } from 'lucide-react';
@@ -119,99 +118,95 @@ export default function StudyStats() {
 
   if (isLoading) {
     return (
-      <Card className="bg-transparent border-white/20 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="text-white drop-shadow-lg">Study Statistics</CardTitle>
-          <CardDescription className="text-white/70 drop-shadow-lg">Loading your study data...</CardDescription>
-        </CardHeader>
-      </Card>
+      <div className="p-6">
+        <h3 className="text-lg font-semibold text-white">Study Statistics</h3>
+        <p className="text-sm text-white/70">Loading your study data...</p>
+      </div>
     );
   }
 
   return (
-    <Card className="bg-transparent border-white/20 backdrop-blur-sm">
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle className="flex items-center gap-2 text-white drop-shadow-lg">
-              <TrendingUp className="h-5 w-5" />
-              Study Statistics
-            </CardTitle>
-            <CardDescription className="text-white/70 drop-shadow-lg">Track your study progress over time</CardDescription>
-          </div>
-          <div className="flex gap-2">
-            {tags.length > 0 && (
-              <Select value={selectedTag || 'all'} onValueChange={handleTagFilter}>
-                <SelectTrigger className="w-[150px] bg-white/10 backdrop-blur-sm border-white/20 text-white">
-                  <Filter className="mr-2 h-4 w-4" />
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent className="bg-white/10 backdrop-blur-md border-white/20">
-                  <SelectItem value="all" className="text-white">All Tags</SelectItem>
-                  {tags.map((tag) => (
-                    <SelectItem key={tag} value={tag} className="text-white">
-                      {tag}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
-            <Button 
-              variant="outline" 
-              size="sm" 
-              onClick={handleExport}
-              className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
-            >
-              <Download className="mr-2 h-4 w-4" />
-              Export
-            </Button>
-          </div>
+    <div className="p-6">
+      <div className="mb-4 flex items-center justify-between">
+        <div>
+          <h3 className="flex items-center gap-2 text-lg font-semibold text-white">
+            <TrendingUp className="h-5 w-5" />
+            Study Statistics
+          </h3>
+          <p className="text-sm text-white/70">Track your study progress over time</p>
         </div>
-      </CardHeader>
-      <CardContent>
+        <div className="flex gap-2">
+          {tags.length > 0 && (
+            <Select value={selectedTag || 'all'} onValueChange={handleTagFilter}>
+              <SelectTrigger className="w-[150px] text-white">
+                <Filter className="mr-2 h-4 w-4" />
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all" className="text-white">All Tags</SelectItem>
+                {tags.map((tag) => (
+                  <SelectItem key={tag} value={tag} className="text-white">
+                    {tag}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={handleExport}
+            className="text-white hover:text-white/80"
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Export
+          </Button>
+        </div>
+      </div>
+      <div>
         <Tabs defaultValue="overview" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 bg-white/10 backdrop-blur-sm border border-white/20">
-            <TabsTrigger value="overview" className="data-[state=active]:bg-white/20 data-[state=active]:text-white text-white/70">Overview</TabsTrigger>
-            <TabsTrigger value="chart" className="data-[state=active]:bg-white/20 data-[state=active]:text-white text-white/70">Chart</TabsTrigger>
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="overview" className="data-[state=active]:text-white text-white/70">Overview</TabsTrigger>
+            <TabsTrigger value="chart" className="data-[state=active]:text-white text-white/70">Chart</TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview" className="space-y-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
-                <div className="flex items-center gap-2 text-white drop-shadow-lg">
+              <div className="space-y-2 p-4 rounded-lg">
+                <div className="flex items-center gap-2 text-white">
                   <Clock className="h-4 w-4" />
                   <span className="text-xs font-medium">Today</span>
                 </div>
-                <p className="text-2xl font-bold text-white drop-shadow-lg">{stats.daily.toFixed(1)}h</p>
+                <p className="text-2xl font-bold text-white">{stats.daily.toFixed(1)}h</p>
               </div>
 
-              <div className="space-y-2 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
-                <div className="flex items-center gap-2 text-white drop-shadow-lg">
+              <div className="space-y-2 p-4 rounded-lg">
+                <div className="flex items-center gap-2 text-white">
                   <Calendar className="h-4 w-4" />
                   <span className="text-xs font-medium">This Week</span>
                 </div>
-                <p className="text-2xl font-bold text-white drop-shadow-lg">{stats.weekly.toFixed(1)}h</p>
+                <p className="text-2xl font-bold text-white">{stats.weekly.toFixed(1)}h</p>
               </div>
 
-              <div className="space-y-2 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
-                <div className="flex items-center gap-2 text-white drop-shadow-lg">
+              <div className="space-y-2 p-4 rounded-lg">
+                <div className="flex items-center gap-2 text-white">
                   <TrendingUp className="h-4 w-4" />
                   <span className="text-xs font-medium">This Month</span>
                 </div>
-                <p className="text-2xl font-bold text-white drop-shadow-lg">{stats.monthly.toFixed(1)}h</p>
+                <p className="text-2xl font-bold text-white">{stats.monthly.toFixed(1)}h</p>
               </div>
 
-              <div className="space-y-2 p-4 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20">
-                <div className="flex items-center gap-2 text-white drop-shadow-lg">
+              <div className="space-y-2 p-4 rounded-lg">
+                <div className="flex items-center gap-2 text-white">
                   <Award className="h-4 w-4" />
                   <span className="text-xs font-medium">This Year</span>
                 </div>
-                <p className="text-2xl font-bold text-white drop-shadow-lg">{stats.yearly.toFixed(1)}h</p>
+                <p className="text-2xl font-bold text-white">{stats.yearly.toFixed(1)}h</p>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/20 text-center">
-              <p className="text-sm text-white/70 drop-shadow-lg">
+            <div className="pt-4 text-center">
+              <p className="text-sm text-white/70">
                 Total Sessions: <span className="font-medium text-white">{stats.totalSessions}</span>
                 {selectedTag && <span className="ml-2 text-xs">(filtered by: {selectedTag})</span>}
               </p>
@@ -219,7 +214,7 @@ export default function StudyStats() {
           </TabsContent>
 
           <TabsContent value="chart">
-            <div className="h-64 bg-white/5 backdrop-blur-sm rounded-lg p-4">
+            <div className="h-64 rounded-lg p-4">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={chartData}>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
@@ -227,9 +222,8 @@ export default function StudyStats() {
                   <YAxis fontSize={12} stroke="rgba(255,255,255,0.7)" />
                   <Tooltip
                     contentStyle={{
-                      backgroundColor: 'rgba(255,255,255,0.1)',
-                      backdropFilter: 'blur(10px)',
-                      border: '1px solid rgba(255,255,255,0.2)',
+                      backgroundColor: 'rgba(0,0,0,0.8)',
+                      border: 'none',
                       borderRadius: '8px',
                       color: 'white',
                     }}
@@ -240,7 +234,7 @@ export default function StudyStats() {
             </div>
           </TabsContent>
         </Tabs>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

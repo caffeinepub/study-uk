@@ -129,6 +129,11 @@ export const quotes: Quote[] = [
     text: "Tell me and I forget. Teach me and I remember. Involve me and I learn.",
     author: "Benjamin Franklin",
     field: "Polymath & Founding Father"
+  },
+  {
+    text: "Lock yourself away and study until you collapse, true brilliance comes from obsession",
+    author: "Isaac Newton",
+    field: "Father of Physics"
   }
 ];
 

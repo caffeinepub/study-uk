@@ -13,24 +13,16 @@ export default function Navigation({ currentPage, onPageChange }: NavigationProp
         variant={currentPage === 'timer' ? 'default' : 'ghost'}
         size="sm"
         onClick={() => onPageChange('timer')}
-        className={
-          currentPage === 'timer'
-            ? 'bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30'
-            : 'bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20'
-        }
+        className="text-white hover:text-white/80"
       >
         <Timer className="mr-2 h-4 w-4" />
-        Focus
+        Timer
       </Button>
       <Button
         variant={currentPage === 'dashboard' ? 'default' : 'ghost'}
         size="sm"
         onClick={() => onPageChange('dashboard')}
-        className={
-          currentPage === 'dashboard'
-            ? 'bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30'
-            : 'bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20'
-        }
+        className="text-white hover:text-white/80"
       >
         <BarChart3 className="mr-2 h-4 w-4" />
         Dashboard

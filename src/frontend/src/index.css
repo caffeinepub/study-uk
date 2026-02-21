@@ -98,13 +98,3 @@
         font-feature-settings: "rlig" 1, "calt" 1;
     }
 }
-
-@layer utilities {
-    .text-shadow-lg {
-        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    }
-    
-    .drop-shadow-2xl {
-        filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5));
-    }
-}

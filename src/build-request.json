@@ -1,85 +1,78 @@
 {
   "kind": "build_request",
-  "title": "Remove all UI backgrounds for full wallpaper visibility and enhance wallpaper upload with file picker",
-  "projectName": "Study Sanctuary",
-  "priority": "normal",
+  "title": "Fix ambient sound playback and adjust timer/quote layout spacing",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-24",
-      "text": "Remove all background colors, backdrop effects, and opacity overlays from every UI component across the entire application so that the wallpaper is fully visible behind all elements, including the timer display, buttons, controls, cards, sections, dashboard components, study goals, statistics panels, quotes, navigation, settings, and any other UI elements",
+      "id": "REQ-39",
+      "text": "Debug and fix the ambient sound player in frontend/src/hooks/useAmbientSound.ts so that all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) successfully play audio when the play button is clicked, ensuring proper Audio element initialization, source loading, and playback execution",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-recent"
+          "msg-10"
         ],
         "quotes": [
-          "just test floating over the wallpaper yes everyone even in the dashboards study goals every i just want to see more of the wallpaper behinf evethinh",
-          "Full UI Transparency: Remove all background colors from every UI element (timer display, buttons, controls, dashboard sections, study goals, etc.) so the wallpaper is fully visible behind everything"
+          "no even one sound is playable wht is wrong with ur coding"
         ]
       },
       "acceptanceCriteria": [
-        "All UI components have transparent backgrounds with no colored overlays or backdrop filters",
-        "Text and controls float directly over the wallpaper without any background boxes",
-        "The wallpaper is fully visible behind all elements on both the timer page and dashboard page",
-        "UI elements remain readable and usable with text colors that contrast well against various wallpaper backgrounds"
+        "Clicking play on any ambient sound (rain, coffee shop, forest, waves, white noise, lofi beats) successfully plays the corresponding audio",
+        "Audio playback continues until paused by the user",
+        "Volume slider correctly adjusts the audio output level",
+        "No console errors related to audio playback"
       ]
     },
     {
-      "id": "REQ-25",
-      "text": "Add a file upload button to the wallpaper section that allows users to select and upload image files directly from their local device, providing an alternative to the existing URL link input method for adding custom wallpapers",
+      "id": "REQ-40",
+      "text": "Adjust the vertical positioning in frontend/src/pages/TimerPage.tsx so the timer is moved down slightly from its current position while remaining horizontally centered",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-recent"
+          "msg-10",
+          "msg-12"
         ],
         "quotes": [
-          "plus for the wallpaper section add a option for image and add files not just link make it easier for ppl to use please",
-          "Wallpaper File Upload: Add a file upload option in the wallpaper section alongside the existing URL link option"
+          "timer move a bit down",
+          "Move the timer down slightly"
         ]
       },
       "acceptanceCriteria": [
-        "A file input button is added to the wallpaper section alongside the existing URL input field",
-        "Users can click the button to open their device's file picker and select image files",
-        "Selected image files are uploaded and stored as custom wallpapers",
-        "The uploaded wallpapers appear in the custom wallpaper grid and can be selected immediately",
-        "The file upload option works independently from the URL input method"
+        "Timer display is positioned lower on the screen than its current location",
+        "Timer remains horizontally centered",
+        "Vertical spacing creates clear separation from the quote above"
       ]
     },
     {
-      "id": "REQ-26",
-      "text": "Implement a functional ambient sound player with audio playback for rain, coffee shop, forest, waves, white noise, and lofi beats sounds, including play/pause controls and a volume slider that adjusts the audio output level",
+      "id": "REQ-41",
+      "text": "Ensure the motivational quote and timer display in frontend/src/pages/TimerPage.tsx have sufficient vertical spacing between them so they are clearly separated and do not overlap or appear too close together",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-recent"
+          "msg-13"
         ],
         "quotes": [
-          "and why cant i hear ambient sound??",
-          "Ambient Sound Player: Implement the ambient sound feature with a curated library of focus sounds (rain, coffee shop, forest, waves, white noise, lofi beats) that you can play during study sessions with volume control"
+          "quote and timer shouldnt overlappp to each other it should be visible diiff ly"
         ]
       },
       "acceptanceCriteria": [
-        "Audio files or audio sources are integrated for all six ambient sounds: rain, coffee shop, forest, waves, white noise, and lofi beats",
-        "Users can select and play any ambient sound from the player interface",
-        "The play/pause button correctly starts and stops the selected sound",
-        "The volume slider adjusts the audio playback volume in real-time",
-        "Only one ambient sound plays at a time",
-        "Audio playback works across all browsers and the selected sound/volume persists across page reloads"
+        "Quote and timer have clear visual separation with adequate vertical spacing",
+        "No overlapping occurs between quote text and timer display",
+        "Both elements remain fully readable and distinct from each other"
       ]
     }
   ],
   "constraints": [
-    "Do not modify backend/main.mo or backend/migration.mo for these changes",
-    "Preserve the existing two-page layout structure (timer page and dashboard page)",
-    "Keep all existing functionality for custom wallpaper uploads via URL intact",
-    "Maintain the existing ambient sound player UI component structure in AmbientSoundPlayer.tsx"
+    "Do not modify the backend/main.mo file",
+    "Do not change files in frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui directory",
+    "Maintain the flat white text design with no backgrounds, shadows, or opacity overlays",
+    "Keep all existing timer functionality intact while adjusting layout"
   ],
   "nonGoals": [
-    "Changing the technology stack or component library",
-    "Modifying the timer functionality or study tracking logic",
-    "Redesigning the overall page layout or navigation structure",
-    "Adding new ambient sounds beyond the existing six options",
-    "Implementing audio mixing or playing multiple sounds simultaneously"
+    "Changing the timer display font size",
+    "Changing the quote font size",
+    "Adding new ambient sounds beyond the existing collection",
+    "Modifying the wallpaper system",
+    "Changing the overall application theme or color scheme"
   ],
   "imageRequirements": {
     "required": [],

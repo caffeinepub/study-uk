@@ -56,49 +56,49 @@ export default function StopwatchTimer() {
     <>
       <div className="space-y-8">
         <div className="text-center">
-          <div className="text-9xl font-mono font-bold text-white drop-shadow-2xl mb-12 leading-none">
+          <div className="text-6xl font-mono font-bold text-white mb-8 leading-none drop-shadow-lg">
             {formatTime(elapsedTime)}
           </div>
 
-          <div className="flex justify-center gap-4">
+          <div className="flex justify-center gap-3">
             {!isRunning ? (
               <Button 
-                size="lg" 
+                size="default" 
                 onClick={start} 
-                className="w-40 h-14 text-lg bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                className="text-white hover:text-white/80"
               >
-                <Play className="mr-2 h-6 w-6" />
+                <Play className="mr-2 h-4 w-4" />
                 Start
               </Button>
             ) : (
               <Button 
-                size="lg" 
+                size="default" 
                 variant="secondary" 
                 onClick={pause} 
-                className="w-40 h-14 text-lg bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                className="text-white hover:text-white/80"
               >
-                <Pause className="mr-2 h-6 w-6" />
+                <Pause className="mr-2 h-4 w-4" />
                 Pause
               </Button>
             )}
             <Button 
-              size="lg" 
+              size="default" 
               variant="outline" 
               onClick={reset} 
-              className="w-40 h-14 text-lg bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+              className="text-white hover:text-white/80"
             >
-              <RotateCcw className="mr-2 h-6 w-6" />
+              <RotateCcw className="mr-2 h-4 w-4" />
               Reset
             </Button>
             {elapsedTime > 0 && (
               <Button
-                size="lg"
+                size="default"
                 variant="default"
                 onClick={handleSave}
                 disabled={recordSessionMutation.isPending}
-                className="w-40 h-14 text-lg bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                className="text-white hover:text-white/80"
               >
-                <Save className="mr-2 h-6 w-6" />
+                <Save className="mr-2 h-4 w-4" />
                 Save
               </Button>
             )}
@@ -107,30 +107,30 @@ export default function StopwatchTimer() {
       </div>
 
       <Dialog open={showSaveDialog} onOpenChange={setShowSaveDialog}>
-        <DialogContent className="bg-white/10 backdrop-blur-md border-white/20">
+        <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-white drop-shadow-lg">Save Study Session</DialogTitle>
-            <DialogDescription className="text-white/70 drop-shadow-lg">
+            <DialogTitle className="text-white">Save Study Session</DialogTitle>
+            <DialogDescription className="text-white/70">
               Add tags to categorize this session (optional)
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label className="text-white drop-shadow-lg">Tags (Press Enter to add)</Label>
+              <Label className="text-white">Tags (Press Enter to add)</Label>
               <TagInput value={tags} onChange={setTags} />
             </div>
             <div className="flex justify-end gap-2">
               <Button 
                 variant="outline" 
                 onClick={() => setShowSaveDialog(false)}
-                className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+                className="text-white hover:text-white/80"
               >
                 Cancel
               </Button>
               <Button 
                 onClick={handleConfirmSave} 
                 disabled={recordSessionMutation.isPending}
-                className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                className="text-white hover:text-white/80"
               >
                 {recordSessionMutation.isPending ? 'Saving...' : 'Save Session'}
               </Button>

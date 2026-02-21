@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
 import { getRandomQuote } from '../../data/quotes';
@@ -12,27 +11,25 @@ export default function MotivationalQuote() {
   };
 
   return (
-    <Card className="bg-transparent border-white/20 backdrop-blur-sm">
-      <CardContent className="pt-6">
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex-1 space-y-2">
-            <p className="text-lg italic text-white drop-shadow-lg">
-              "{quote.text}"
-            </p>
-            <p className="text-sm text-white/70 drop-shadow-lg">
-              — {quote.author}, <span className="text-xs">{quote.field}</span>
-            </p>
-          </div>
+    <div className="text-center max-w-4xl mx-auto pt-8">
+      <div className="space-y-4">
+        <p className="text-2xl font-medium italic text-white leading-relaxed drop-shadow-lg">
+          "{quote.text}"
+        </p>
+        <p className="text-base text-white/90 drop-shadow-md">
+          — {quote.author}, <span className="text-sm">{quote.field}</span>
+        </p>
+        <div className="flex justify-center pt-2">
           <Button
             variant="ghost"
             size="icon"
             onClick={handleRefresh}
-            className="shrink-0 bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+            className="text-white hover:text-white/80 hover:bg-white/10"
           >
-            <RefreshCw className="h-4 w-4" />
+            <RefreshCw className="h-5 w-5" />
           </Button>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

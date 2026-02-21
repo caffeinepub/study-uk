@@ -30,12 +30,12 @@ export default function MainLayout({ children, currentPage, onPageChange }: Main
       <WallpaperBackground />
       
       <div className="relative z-10">
-        <nav className="bg-transparent border-b border-white/20 backdrop-blur-sm">
+        <nav>
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">📚</span>
-                <span className="font-semibold text-lg text-white drop-shadow-lg">Study Sanctuary</span>
+                <span className="font-semibold text-lg text-white">Study Sanctuary</span>
               </div>
               <Navigation currentPage={currentPage} onPageChange={onPageChange} />
             </div>
@@ -46,7 +46,7 @@ export default function MainLayout({ children, currentPage, onPageChange }: Main
                 size="icon"
                 onClick={() => setShowHelp(true)}
                 title="Keyboard Shortcuts"
-                className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+                className="text-white hover:text-white/80"
               >
                 <HelpCircle className="h-5 w-5" />
               </Button>
@@ -55,15 +55,15 @@ export default function MainLayout({ children, currentPage, onPageChange }: Main
                   <Button 
                     variant="ghost" 
                     size="icon"
-                    className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+                    className="text-white hover:text-white/80"
                   >
                     <Settings className="h-5 w-5" />
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="overflow-y-auto bg-black/50 backdrop-blur-md border-white/20">
+                <SheetContent className="overflow-y-auto">
                   <SheetHeader>
-                    <SheetTitle className="text-white drop-shadow-lg">Wallpaper Settings</SheetTitle>
-                    <SheetDescription className="text-white/70 drop-shadow-lg">
+                    <SheetTitle className="text-white">Wallpaper Settings</SheetTitle>
+                    <SheetDescription className="text-white/70">
                       Choose your perfect study atmosphere
                     </SheetDescription>
                   </SheetHeader>
@@ -80,8 +80,8 @@ export default function MainLayout({ children, currentPage, onPageChange }: Main
           {children}
         </main>
 
-        <footer className="bg-transparent border-t border-white/20 backdrop-blur-sm py-6 mt-12">
-          <div className="container mx-auto px-4 text-center text-sm text-white/70 drop-shadow-lg">
+        <footer className="py-6 mt-12">
+          <div className="container mx-auto px-4 text-center text-sm text-white/70">
             <p className="flex items-center justify-center gap-2">
               © {new Date().getFullYear()} Built with{' '}
               <span className="text-rose-400">♥</span> using{' '}

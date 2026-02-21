@@ -2,71 +2,9 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-remove-all-background-colors-backdrop-effects-and-opacity-overlays-from-every-ui-component-across-the-entire-application-so-that-the-wallpaper-is-fully-visible-behind-all-elements-including-the-timer-display-buttons-controls-cards-sections-dashboard-components-study-goals-statistics-panels-quotes-navigation-settings-and-any-other-ui-elements",
-      "featureTitle": "Remove all background colors, backdrop effects, and opacity overlays from every UI component across the entire application so that the wallpaper is fully visible behind all elements, including the timer display, buttons, controls, cards, sections, dashboard components, study goals, statistics panels, quotes, navigation, settings, and any other UI elements",
+      "featureId": "feature-debug-and-fix-the-ambient-sound-player-in-frontend-src-hooks-useambientsound-ts-so-that-all-sounds-rain-coffee-shop-forest-waves-white-noise-lofi-beats-successfully-play-audio-when-the-play-button-is-clicked-ensuring-proper-audio-element-initialization-source-loading-and-playback-execution",
+      "featureTitle": "Debug and fix the ambient sound player in frontend/src/hooks/useAmbientSound.ts so that all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) successfully play audio when the play button is clicked, ensuring proper Audio element initialization, source loading, and playback execution",
       "files": [
-        "frontend/src/components/focus/FocusMode.tsx",
-        "frontend/src/components/goals/GoalManager.tsx",
-        "frontend/src/components/goals/GoalTracker.tsx",
-        "frontend/src/components/help/KeyboardShortcutsHelp.tsx",
-        "frontend/src/components/layout/MainLayout.tsx",
-        "frontend/src/components/layout/Navigation.tsx",
-        "frontend/src/components/presets/PresetManager.tsx",
-        "frontend/src/components/quotes/MotivationalQuote.tsx",
-        "frontend/src/components/sound/AmbientSoundPlayer.tsx",
-        "frontend/src/components/spotify/SpotifyPlayer.tsx",
-        "frontend/src/components/stats/StudyStats.tsx",
-        "frontend/src/components/tags/TagInput.tsx",
-        "frontend/src/components/timers/AnimedoroTimer.tsx",
-        "frontend/src/components/timers/CustomPresetTimer.tsx",
-        "frontend/src/components/timers/PomodoroTimer.tsx",
-        "frontend/src/components/timers/StopwatchTimer.tsx",
-        "frontend/src/components/timers/TimerSection.tsx",
-        "frontend/src/components/wallpaper/WallpaperBackground.tsx",
-        "frontend/src/components/wallpaper/WallpaperSelector.tsx",
-        "frontend/src/components/wallpaper/WallpaperUploader.tsx",
-        "frontend/src/index.css",
-        "frontend/src/pages/DashboardPage.tsx"
-      ],
-      "components": [
-        "blob-storage@4.0.0",
-        "http-outcalls@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-24"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-file-upload-button-to-the-wallpaper-section-that-allows-users-to-select-and-upload-image-files-directly-from-their-local-device-providing-an-alternative-to-the-existing-url-link-input-method-for-adding-custom-wallpapers",
-      "featureTitle": "Add a file upload button to the wallpaper section that allows users to select and upload image files directly from their local device, providing an alternative to the existing URL link input method for adding custom wallpapers",
-      "files": [
-        "frontend/src/components/wallpaper/WallpaperUploader.tsx"
-      ],
-      "components": [
-        "blob-storage@4.0.0",
-        "http-outcalls@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-25"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-a-functional-ambient-sound-player-with-audio-playback-for-rain-coffee-shop-forest-waves-white-noise-and-lofi-beats-sounds-including-play-pause-controls-and-a-volume-slider-that-adjusts-the-audio-output-level",
-      "featureTitle": "Implement a functional ambient sound player with audio playback for rain, coffee shop, forest, waves, white noise, and lofi beats sounds, including play/pause controls and a volume slider that adjusts the audio output level",
-      "files": [
-        "frontend/src/components/sound/AmbientSoundPlayer.tsx",
         "frontend/src/hooks/useAmbientSound.ts"
       ],
       "components": [
@@ -79,7 +17,48 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-26"
+        "REQ-39"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-adjust-the-vertical-positioning-in-frontend-src-pages-timerpage-tsx-so-the-timer-is-moved-down-slightly-from-its-current-position-while-remaining-horizontally-centered",
+      "featureTitle": "Adjust the vertical positioning in frontend/src/pages/TimerPage.tsx so the timer is moved down slightly from its current position while remaining horizontally centered",
+      "files": [
+        "frontend/src/pages/TimerPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-40"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-motivational-quote-and-timer-display-in-frontend-src-pages-timerpage-tsx-have-sufficient-vertical-spacing-between-them-so-they-are-clearly-separated-and-do-not-overlap-or-appear-too-close-together",
+      "featureTitle": "Ensure the motivational quote and timer display in frontend/src/pages/TimerPage.tsx have sufficient vertical spacing between them so they are clearly separated and do not overlap or appear too close together",
+      "files": [
+        "frontend/src/components/quotes/MotivationalQuote.tsx",
+        "frontend/src/pages/TimerPage.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "http-outcalls@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-41"
       ],
       "confidence": "high"
     }

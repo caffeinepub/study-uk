@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Pause, RotateCcw, Save } from 'lucide-react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Play, Pause, RotateCcw, Save, Plus } from 'lucide-react';
 import { useGetAllPresets, useRecordSession } from '../../hooks/useQueries';
 import {
   Dialog,
@@ -10,83 +9,96 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import TagInput from '../tags/TagInput';
-import { useEffect } from 'react';
+import PresetManager from '../presets/PresetManager';
 
 export default function CustomPresetTimer() {
-  const { data: presets = [] } = useGetAllPresets();
+  const { data: presets = [], isLoading } = useGetAllPresets();
+  const recordSessionMutation = useRecordSession();
+
   const [selectedPreset, setSelectedPreset] = useState<string>('');
   const [timeLeft, setTimeLeft] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [startTime, setStartTime] = useState<number | null>(null);
+  const [startTime, setStartTime] = useState<bigint | null>(null);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [showPresetManager, setShowPresetManager] = useState(false);
   const [tags, setTags] = useState<string[]>([]);
-  const recordSessionMutation = useRecordSession();
 
   const currentPreset = presets.find((p) => p.labelText === selectedPreset);
 
   useEffect(() => {
-    if (selectedPreset && currentPreset) {
-      setTimeLeft(Number(currentPreset.duration) / 1_000_000);
+    if (currentPreset && !isRunning) {
+      setTimeLeft(Number(currentPreset.duration) / 1_000_000_000);
     }
-  }, [selectedPreset, currentPreset]);
+  }, [currentPreset, isRunning]);
 
   useEffect(() => {
     let interval: number | null = null;
     if (isRunning && timeLeft > 0) {
       interval = window.setInterval(() => {
-        setTimeLeft((prev) => Math.max(0, prev - 1000));
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            setIsRunning(false);
+            toast.success('Timer completed!');
+            return 0;
+          }
+          return prev - 1;
+        });
       }, 1000);
-    } else if (timeLeft === 0 && isRunning) {
-      setIsRunning(false);
-      toast.success('Timer completed!');
     }
     return () => {
       if (interval) clearInterval(interval);
     };
   }, [isRunning, timeLeft]);
 
-  const formatTime = (ms: number) => {
-    const totalSeconds = Math.floor(ms / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
-    const seconds = totalSeconds % 60;
-    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  const formatTime = (seconds: number) => {
+    const minutes = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const start = () => {
-    if (!startTime) {
-      setStartTime(Date.now());
+  const handleStart = () => {
+    if (!currentPreset) {
+      toast.error('Please select a preset first');
+      return;
     }
+    setStartTime(BigInt(Date.now()) * BigInt(1_000_000));
     setIsRunning(true);
   };
 
-  const pause = () => {
+  const handlePause = () => {
     setIsRunning(false);
   };
 
-  const reset = () => {
+  const handleReset = () => {
     setIsRunning(false);
     setStartTime(null);
     if (currentPreset) {
-      setTimeLeft(Number(currentPreset.duration) / 1_000_000);
+      setTimeLeft(Number(currentPreset.duration) / 1_000_000_000);
     }
   };
 
   const handleSave = () => {
-    if (startTime) {
+    if (startTime && currentPreset) {
       setShowSaveDialog(true);
     }
   };
 
   const handleConfirmSave = async () => {
     if (startTime && currentPreset) {
-      const endTime = Date.now();
+      const endTime = BigInt(Date.now()) * BigInt(1_000_000);
       await recordSessionMutation.mutateAsync({
-        startTime: BigInt(startTime * 1_000_000),
-        endTime: BigInt(endTime * 1_000_000),
+        startTime,
+        endTime,
         labelText: currentPreset.labelText,
         colorTheme: currentPreset.colorTheme,
         tags,
@@ -94,91 +106,91 @@ export default function CustomPresetTimer() {
       toast.success('Session saved successfully!');
       setShowSaveDialog(false);
       setTags([]);
-      reset();
+      handleReset();
     }
   };
 
-  if (presets.length === 0) {
-    return (
-      <div className="text-center py-12">
-        <p className="text-white/70 drop-shadow-lg">No custom presets available. Create one to get started!</p>
-      </div>
-    );
+  if (isLoading) {
+    return <div className="text-center text-white">Loading presets...</div>;
   }
 
   return (
     <>
       <div className="space-y-8">
         <div className="text-center">
-          <div className="mb-8 max-w-xs mx-auto">
-            <Label htmlFor="preset-select" className="text-white drop-shadow-lg mb-2 block">
-              Select Preset
-            </Label>
-            <Select value={selectedPreset} onValueChange={setSelectedPreset}>
-              <SelectTrigger 
-                id="preset-select" 
-                className="bg-white/10 backdrop-blur-sm border-white/20 text-white"
+          <div className="mb-6 max-w-md mx-auto">
+            <Label className="text-white mb-2 block">Select Preset</Label>
+            <div className="flex gap-2">
+              <Select value={selectedPreset} onValueChange={setSelectedPreset}>
+                <SelectTrigger className="flex-1 text-white">
+                  <SelectValue placeholder="Choose a preset" />
+                </SelectTrigger>
+                <SelectContent>
+                  {presets.map((preset) => (
+                    <SelectItem key={preset.labelText} value={preset.labelText}>
+                      {preset.labelText}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={() => setShowPresetManager(true)}
+                className="text-white hover:text-white/80"
               >
-                <SelectValue placeholder="Choose a preset" />
-              </SelectTrigger>
-              <SelectContent className="bg-white/10 backdrop-blur-md border-white/20">
-                {presets.map((preset) => (
-                  <SelectItem key={preset.labelText} value={preset.labelText} className="text-white">
-                    {preset.labelText}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+                <Plus className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
 
-          {selectedPreset && currentPreset && (
+          {currentPreset && (
             <>
-              <div
-                className="text-9xl font-mono font-bold mb-12 leading-none drop-shadow-2xl"
+              <div className="text-6xl font-mono font-bold mb-8 leading-none drop-shadow-lg"
                 style={{ color: currentPreset.colorTheme }}
               >
                 {formatTime(timeLeft)}
               </div>
 
-              <div className="flex justify-center gap-4">
+              <div className="flex justify-center gap-3">
                 {!isRunning ? (
                   <Button 
-                    size="lg" 
-                    onClick={start} 
-                    className="w-40 h-14 text-lg bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                    size="default" 
+                    onClick={handleStart} 
+                    className="text-white hover:text-white/80"
                   >
-                    <Play className="mr-2 h-6 w-6" />
+                    <Play className="mr-2 h-4 w-4" />
                     Start
                   </Button>
                 ) : (
                   <Button 
-                    size="lg" 
+                    size="default" 
                     variant="secondary" 
-                    onClick={pause} 
-                    className="w-40 h-14 text-lg bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                    onClick={handlePause} 
+                    className="text-white hover:text-white/80"
                   >
-                    <Pause className="mr-2 h-6 w-6" />
+                    <Pause className="mr-2 h-4 w-4" />
                     Pause
                   </Button>
                 )}
                 <Button 
-                  size="lg" 
+                  size="default" 
                   variant="outline" 
-                  onClick={reset} 
-                  className="w-40 h-14 text-lg bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+                  onClick={handleReset} 
+                  className="text-white hover:text-white/80"
                 >
-                  <RotateCcw className="mr-2 h-6 w-6" />
+                  <RotateCcw className="mr-2 h-4 w-4" />
                   Reset
                 </Button>
                 {startTime && (
                   <Button
-                    size="lg"
+                    size="default"
                     variant="default"
                     onClick={handleSave}
                     disabled={recordSessionMutation.isPending}
-                    className="w-40 h-14 text-lg bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                    className="text-white hover:text-white/80"
                   >
-                    <Save className="mr-2 h-6 w-6" />
+                    <Save className="mr-2 h-4 w-4" />
                     Save
                   </Button>
                 )}
@@ -188,31 +200,35 @@ export default function CustomPresetTimer() {
         </div>
       </div>
 
+      {showPresetManager && (
+        <PresetManager onClose={() => setShowPresetManager(false)} />
+      )}
+
       <Dialog open={showSaveDialog} onOpenChange={setShowSaveDialog}>
-        <DialogContent className="bg-white/10 backdrop-blur-md border-white/20">
+        <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-white drop-shadow-lg">Save Study Session</DialogTitle>
-            <DialogDescription className="text-white/70 drop-shadow-lg">
+            <DialogTitle className="text-white">Save Study Session</DialogTitle>
+            <DialogDescription className="text-white/70">
               Add tags to categorize this session (optional)
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label className="text-white drop-shadow-lg">Tags (Press Enter to add)</Label>
+              <Label className="text-white">Tags (Press Enter to add)</Label>
               <TagInput value={tags} onChange={setTags} />
             </div>
             <div className="flex justify-end gap-2">
               <Button 
                 variant="outline" 
                 onClick={() => setShowSaveDialog(false)}
-                className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+                className="text-white hover:text-white/80"
               >
                 Cancel
               </Button>
               <Button 
                 onClick={handleConfirmSave} 
                 disabled={recordSessionMutation.isPending}
-                className="bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+                className="text-white hover:text-white/80"
               >
                 {recordSessionMutation.isPending ? 'Saving...' : 'Save Session'}
               </Button>

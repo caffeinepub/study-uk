@@ -57,7 +57,9 @@ export function useAmbientSound() {
   });
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const currentSoundIdRef = useRef<string | null>(null);
 
+  // Persist selected sound
   useEffect(() => {
     if (selectedSound) {
       localStorage.setItem('ambientSound', selectedSound);
@@ -66,6 +68,7 @@ export function useAmbientSound() {
     }
   }, [selectedSound]);
 
+  // Persist volume
   useEffect(() => {
     localStorage.setItem('ambientVolume', String(volume));
     if (audioRef.current) {
@@ -73,27 +76,51 @@ export function useAmbientSound() {
     }
   }, [volume]);
 
+  // Handle audio playback
   useEffect(() => {
-    if (selectedSound && isPlaying) {
-      const sound = AMBIENT_SOUNDS.find((s) => s.id === selectedSound);
-      if (sound) {
-        if (!audioRef.current || audioRef.current.src !== sound.url) {
-          if (audioRef.current) {
-            audioRef.current.pause();
-          }
-          audioRef.current = new Audio(sound.url);
-          audioRef.current.loop = true;
-          audioRef.current.volume = volume / 100;
+    const sound = selectedSound ? AMBIENT_SOUNDS.find((s) => s.id === selectedSound) : null;
+
+    if (sound && isPlaying) {
+      // Create new audio element if sound changed or doesn't exist
+      if (!audioRef.current || currentSoundIdRef.current !== sound.id) {
+        // Clean up old audio
+        if (audioRef.current) {
+          audioRef.current.pause();
+          audioRef.current.src = '';
+          audioRef.current = null;
         }
+
+        // Create new audio element
+        const audio = new Audio();
+        audio.src = sound.url;
+        audio.loop = true;
+        audio.volume = volume / 100;
+        audioRef.current = audio;
+        currentSoundIdRef.current = sound.id;
+
+        // Wait for audio to be ready before playing
+        audio.addEventListener('canplaythrough', () => {
+          audio.play().catch((error) => {
+            console.error('Audio playback error:', error);
+            setIsPlaying(false);
+          });
+        }, { once: true });
+
+        // Load the audio
+        audio.load();
+      } else {
+        // Resume existing audio
         audioRef.current.play().catch((error) => {
           console.error('Audio playback error:', error);
           setIsPlaying(false);
         });
       }
     } else if (audioRef.current) {
+      // Pause audio
       audioRef.current.pause();
     }
 
+    // Cleanup on unmount
     return () => {
       if (audioRef.current && !isPlaying) {
         audioRef.current.pause();
@@ -102,10 +129,6 @@ export function useAmbientSound() {
   }, [selectedSound, isPlaying, volume]);
 
   const play = (soundId: string) => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current = null;
-    }
     setSelectedSound(soundId);
     setIsPlaying(true);
   };

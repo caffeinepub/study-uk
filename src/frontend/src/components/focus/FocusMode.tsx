@@ -28,48 +28,48 @@ export default function FocusMode() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="text-center space-y-8">
         <div className="space-y-4">
           <h2 className="text-2xl font-semibold text-white drop-shadow-lg">Focus Mode</h2>
-          <div className="text-9xl font-mono font-bold text-white drop-shadow-2xl leading-none">
+          <div className="text-6xl font-mono font-bold text-white leading-none drop-shadow-lg">
             {formatTime(time)}
           </div>
         </div>
 
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center gap-3">
           <Button
-            size="lg"
+            size="default"
             variant="outline"
             onClick={() => setIsRunning(!isRunning)}
-            className="w-32 bg-white/20 backdrop-blur-sm border-white/30 text-white hover:bg-white/30"
+            className="text-white hover:text-white/80"
           >
             {isRunning ? (
               <>
-                <Pause className="mr-2 h-5 w-5" />
+                <Pause className="mr-2 h-4 w-4" />
                 Pause
               </>
             ) : (
               <>
-                <Play className="mr-2 h-5 w-5" />
+                <Play className="mr-2 h-4 w-4" />
                 Start
               </>
             )}
           </Button>
 
           <Button
-            size="lg"
+            size="default"
             variant="ghost"
             onClick={disableFocusMode}
-            className="w-32 bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+            className="text-white hover:text-white/80"
           >
-            <X className="mr-2 h-5 w-5" />
+            <X className="mr-2 h-4 w-4" />
             Exit
           </Button>
         </div>
 
-        <p className="text-sm text-white/70 drop-shadow-lg">
-          Press <kbd className="px-2 py-1 bg-white/20 backdrop-blur-sm rounded text-white">F</kbd> to exit focus mode
+        <p className="text-sm text-white/80 drop-shadow-md">
+          Press <kbd className="px-2 py-1 rounded text-white bg-white/10">F</kbd> to exit focus mode
         </p>
       </div>
     </div>

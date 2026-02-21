@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 11,
+  "projectStateVersion": 19,
   "summary": "A study website with aesthetic themes (anime, Studio Ghibli), featuring timers (stopwatch, Pomodoro, Animedoro), customizable wallpapers, Spotify integration, and study hour tracking (daily, weekly, monthly, yearly)",
   "architectural_notes": [
     "Website should be free and accessible to everyone",
@@ -8,11 +8,14 @@
     "Multiple timer modes: stopwatch, Pomodoro, Animedoro",
     "Include advanced/premium features typically behind paywalls in other study apps, but keep them completely free",
     "Default wallpapers need to be clear and high-quality with good vision/visibility",
-    "All UI elements should have completely transparent backgrounds with text floating directly over wallpapers",
-    "Wallpaper section should support both URL link input and direct file upload from device"
+    "Wallpaper section should support both URL link input and direct file upload from device",
+    "Quote collection should be expandable with user-provided quotes",
+    "UI elements should be completely flat with no shadows, glows, or visual effects - just raw text and icons on wallpaper",
+    "Custom ambient sounds section should have no black background and be fully transparent like other UI elements"
   ],
   "known_issues": [
-    "Current wallpapers lack clarity and good vision"
+    "White transparent overlays still present on UI elements despite request for complete removal",
+    "Ambient sound player not playing any audio when play button is clicked"
   ],
   "isFixRequest": true,
   "existing_features": [
@@ -223,6 +226,126 @@
         "REQ-26"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-remove-all-background-colors-backdrop-blur-effects-opacity-overlays-and-transparency-from-every-ui-component-across-the-entire-application-including-timer-displays-buttons-control-panels-quote-sections-settings-panels-navigation-elements-statistics-dashboards-goal-trackers-focus-mode-overlays-keyboard-shortcuts-help-dialogs-preset-managers-tag-inputs-spotify-player-ambient-sound-player-and-any-other-interface-elements-ensuring-only-raw-flat-text-and-icons-are-visible-directly-on-the-wallpaper-background",
+      "title": "Remove all background colors, backdrop-blur effects, opacity overlays, and transparency from every UI component across the entire application, including timer displays, buttons, control panels, quote sections, settings panels, navigation elements, statistics dashboards, goal trackers, focus mode overlays, keyboard shortcuts help dialogs, preset managers, tag inputs, Spotify player, ambient sound player, and any other interface elements, ensuring only raw flat text and icons are visible directly on the wallpaper background",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-motivational-quote-lock-yourself-away-and-study-until-you-collapse-true-brilliance-comes-from-obsession-attributed-to-isaac-newton-father-of-physics-to-the-existing-quote-collection-in-frontend-src-data-quotes-ts",
+      "title": "Add the motivational quote 'Lock yourself away and study until you collapse, true brilliance comes from obsession' attributed to Isaac Newton (Father of Physics) to the existing quote collection in frontend/src/data/quotes.ts",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-all-shadow-effects-glow-effects-and-any-visual-effects-from-ui-elements-to-achieve-a-pure-flat-design-with-no-depth-cues-or-visual-treatments-beyond-the-raw-text-and-icon-content",
+      "title": "Remove all shadow effects, glow effects, and any visual effects from UI elements to achieve a pure flat design with no depth cues or visual treatments beyond the raw text and icon content",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-new-wallpapers-to-the-collection-focused-on-study-environments-calm-and-peaceful-library-anime-aesthetics-clouds-and-studio-ghibli-anime-themes",
+      "title": "Add new wallpapers to the collection focused on study environments, calm and peaceful library anime aesthetics, clouds, and Studio Ghibli anime themes",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-support-for-live-animated-wallpapers-that-can-play-video-or-animated-content-as-the-background",
+      "title": "Implement support for live/animated wallpapers that can play video or animated content as the background",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-increase-the-font-size-of-motivational-quotes-and-center-them-both-horizontally-and-vertically-on-the-screen",
+      "title": "Increase the font size of motivational quotes and center them both horizontally and vertically on the screen",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-move-the-ambient-sound-player-controls-slightly-more-toward-the-corner-while-keeping-them-in-the-same-general-area",
+      "title": "Move the ambient sound player controls slightly more toward the corner while keeping them in the same general area",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-increase-the-size-and-space-allocated-to-the-timer-display-to-make-it-more-prominent-on-the-timer-page",
+      "title": "Increase the size and space allocated to the timer display to make it more prominent on the timer page",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-black-background-from-the-custom-ambient-sounds-section-so-it-is-fully-transparent-and-allows-the-wallpaper-to-show-through",
+      "title": "Remove the black background from the custom ambient sounds section so it is fully transparent and allows the wallpaper to show through",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-reduce-the-motivational-quote-font-size-in-frontend-src-components-quotes-motivationalquote-tsx-back-to-its-original-smaller-dimensions-reverting-the-text-8xl-or-text-9xl-classes-to-a-smaller-size-like-text-2xl-or-text-3xl",
+      "title": "Reduce the motivational quote font size in frontend/src/components/quotes/MotivationalQuote.tsx back to its original smaller dimensions, reverting the text-8xl or text-9xl classes to a smaller size like text-2xl or text-3xl",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-reduce-the-timer-display-font-size-in-frontend-src-components-focus-focusmode-tsx-from-text-10rem-to-a-smaller-size-like-text-6xl-or-text-7xl-to-match-the-original-dimensions",
+      "title": "Reduce the timer display font size in frontend/src/components/focus/FocusMode.tsx from text-[10rem] to a smaller size like text-6xl or text-7xl to match the original dimensions",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-reduce-the-timer-display-sizes-across-all-timer-components-stopwatchtimer-pomodorotimer-animedorotimer-custompresettimer-in-the-frontend-src-components-timers-directory-to-their-original-smaller-dimensions-reverting-any-recent-increases-in-text-size-classes",
+      "title": "Reduce the timer display sizes across all timer components (StopwatchTimer, PomodoroTimer, AnimedoroTimer, CustomPresetTimer) in the frontend/src/components/timers/ directory to their original smaller dimensions, reverting any recent increases in text size classes",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-debug-and-fix-the-ambient-sound-player-in-frontend-src-hooks-useambientsound-ts-so-that-all-sounds-rain-coffee-shop-forest-waves-white-noise-lofi-beats-successfully-play-audio-when-the-play-button-is-clicked-ensuring-proper-audio-element-initialization-source-loading-and-playback-execution",
+      "title": "Debug and fix the ambient sound player in frontend/src/hooks/useAmbientSound.ts so that all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) successfully play audio when the play button is clicked, ensuring proper Audio element initialization, source loading, and playback execution",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-the-vertical-positioning-in-frontend-src-pages-timerpage-tsx-so-the-timer-is-moved-down-slightly-from-its-current-position-while-remaining-horizontally-centered",
+      "title": "Adjust the vertical positioning in frontend/src/pages/TimerPage.tsx so the timer is moved down slightly from its current position while remaining horizontally centered",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-motivational-quote-and-timer-display-in-frontend-src-pages-timerpage-tsx-have-sufficient-vertical-spacing-between-them-so-they-are-clearly-separated-and-do-not-overlap-or-appear-too-close-together",
+      "title": "Ensure the motivational quote and timer display in frontend/src/pages/TimerPage.tsx have sufficient vertical spacing between them so they are clearly separated and do not overlap or appear too close together",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -283,6 +406,48 @@
     {
       "id": "AR-12",
       "summary": "Increase timer display size to occupy more screen space",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add more study-focused wallpapers including calm peaceful library anime, clouds, Studio Ghibli themes, and implement live/animated wallpaper support",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Move ambient sound controls slightly more toward the corner while maintaining general position",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Remove black background from custom ambient sounds section to make it fully transparent like the rest of the UI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Revert motivational quote text size back to original smaller font size",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Revert timer display size back to original smaller dimensions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Fix ambient sound player so all sounds (rain, coffee shop, forest, waves, white noise, lofi beats) play when clicked",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Adjust layout so timer is moved down slightly and quote and timer are clearly separated without overlapping",
       "reqIds": [],
       "status": "pending"
     }
